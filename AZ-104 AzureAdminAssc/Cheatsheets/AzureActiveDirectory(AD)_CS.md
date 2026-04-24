@@ -1,0 +1,47 @@
+# Azure Active Directory *Cheatsheet*
+- **Active Directory(AD)**  is Mircosoft's `Identity and Access Management(IAM)` service. Helps your employees sign-in and access resources.
+- **Azure Active Directory(Azure AD)** is Microsoft's cloud based version of AD, aka `Identity as a Service(IdaaS).
+- Azure AD comes in 4 editions:
+  - **Free** MFA, SSO, Basic Security and Usage Reports. User Management
+  - **Office 365 Apps** Compnay Branding, SLA, Two-sync between on-premise and cloud
+  - **Premium 1(P1)** Hybrid architecture, Advanced Group Acces, Conditional Access
+  - **Premium 2(P2)** Identity protection, Identity Governance
+- **Azure AD** can `authorize` and `authenticate` to multiple sources
+  - To your on-premise AD via **Azure AD Connect**
+  - To yur web application via **App Registrations**
+  - Allow users to login with their IdP eg Facebook or Google via **External Identities**
+  - To Office365 or **Azure Microsoft**
+- Active Directory terminology:
+  - **Domain** is an area of network organized by a single authentication database
+  - **Active Directory Domain** is a logical grouping of AD objects on a network
+  - **Domain Controller** is a server that `authenticates` user identities and `authorizes` their access to resources.
+  - **Domain Computer** is a computer that is registered with a central authentication database. A Domain Computer would be an `AD Object`.
+  - **AD Object** is the basic element of AD such as Users, Groups, Printers, Computers, Shared folders
+  - **Group Policy Object(GPO)** is a virtual collection of policy settings. It controls what AD objects have access to.
+  - **Orgranizational Units(OU)** is a subdivision within an AD into which you can place Users, Groups, Computers and other OUs.
+  - **Directory Service** such as `Active Directory Domain Services(AD DS)` provides the method for storing directory data and making this data available to network users and administrators. A Directory Service runs on a `Domain Controller`
+- **Tenant** represents and organization in Azure AD. A tenant is a dedicated Azure AD Service instance. 
+  - A Tenant is automatically created when you sign up for: Microsoft Azure, Microsoft Intune, Microsoft O365
+  - Each Azure AD tenant is distinct and separate from other Azure AD Tenants
+  - When performing a lift-and-shift of AD to Azure, not all AD features are supported and in that case you need to use AD DS.
+- **Azure Active Directory Domain Services(AD DS)** provides `managed domain services` features such as:
+  - **Password hash authentication** - sign-in method, syncs a hash of users' on-prem AD password with Azure AD.
+  - **Pass-through Authentication** sign-in method, allows users to use the same password on-premises and in the cloud.
+  - **Federation Integration** hybried environment using an on-premise AD FS(Active Directory Federation Services) infrastructure, for certificate renewal.
+  - **Synchronization** - Responsible for creating users, groups and other objects. Ensures on-premise and Cloud data matches.
+  - **Health Monitoring** - robust monitoring and provides a central location in the Azure Portal to view this activity.
+- **Users** represents an identity for a person or employee in your domain. A user has login credentials and can use them to login to the Azure portal. Azure AD has two kinds of users:
+  - Users - A user belongs to an Organization
+  - Guest Users - A Guest user belongs to a different organization.
+- **Groups** lets the resource owner (or Azure AD directory owner), assign a set of access permissions to all the members of the group, instead of managing permissions one-by-one. Groups contatin:
+  - **Owners** have permissions to add/remove members
+  - **Members** have permissions to do things
+- **Assignment**
+  - You can assign roles directly to a group
+  - You can assign applications directly to a group
+- **Request to join Groups** The owner can allow users find their own Groups to join instead of assigning them. The Owner can also setup the group to automatically accept all users to join or to require approval.
+- There are four ways to `assign resource access rights` to your users:
+  - **Direct Assignment** The Resource Owner directly assigns the user to the resource.
+  - **Groups Assignment** The Resource Owner assigns an Azure AD group to the resource, which automatically gives all of the members of the group access to the resource.
+  - **Rule-based assignment** The Resource Owner creates a group and uses a rule to define which users are assigned to a specfic resource.
+  - **External Authority Assignment** Access comes from an external resource such as an on-premise directory or a SaaS app.
